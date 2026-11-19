@@ -1,0 +1,17 @@
+---
+description: Keitaro Admin API client conventions
+globs: backend/**/*.py
+alwaysApply: false
+---
+
+# Keitaro API
+
+- Base: `{KEITARO_BASE_URL}/admin_api/v1`. Auth header: `Api-Key`.
+- Resources: `campaigns`, `streams`, `offers`, `domains`, `groups?type=campaigns`, `traffic_sources`.
+- Create domain/group/source with POST `{name}` when the user types a value that is not in the list. Geo is a country code, not a Keitaro entity.
+- Create campaign with `name`, `alias`, `domain_id`, `group_id`, `traffic_source_id`, `type: position`.
+- Geo stream: `type: regular`, `schema: redirect`, HTTP action to Google, country filter `accept`.
+- Offer stream: `type: default`, attach offers with integer `share`.
+- Fetch streams via `GET /campaigns/{id}/streams`. Streams without offers are stubs — do not parse filters or redirect URLs.
+- Push offer changes with `PUT /streams/{id}` and **active** offers only.
+- Surface Keitaro error bodies to the API caller. Do not swallow tracker failures.

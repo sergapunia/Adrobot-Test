@@ -1,0 +1,15 @@
+---
+description: Local stream editor invariants for offer shares
+globs: backend/**/*.py
+alwaysApply: false
+---
+
+# Stream editor
+
+- Local edits never hit Keitaro until **Push**. Dirty streams are unpublished.
+- **Cancel** restores the last Fetch/Push snapshot and deletes locally added unpublished offers.
+- **Remove** keeps the row: status `removed`, share `0`. **Bring back** reactivates it.
+- Offers missing in Keitaro after Fetch become `removed` (same as a local remove).
+- Shares are integers. Active shares must sum to 100. Remainder goes to the first unpinned offers (3 → 34/33/33).
+- Pinned shares stay fixed on add/remove/restore. Unpinned active offers split `100 - sum(pinned)`.
+- Push sends only active offers. Pins are local and survive a successful push.

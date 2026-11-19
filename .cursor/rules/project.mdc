@@ -1,0 +1,14 @@
+---
+description: Core architecture for the Keitaro campaign wrapper
+alwaysApply: true
+---
+
+# Project
+
+- FastAPI + SQLAlchemy 2 (SQLite draft) + React/Vite.
+- Two features: campaign creator, stream offer editor.
+- Keitaro Admin API is the published source of truth.
+- SQLite stores the working copy: unpublished edits, pinned shares, removed offers.
+- Secrets live only in `.env`. Never commit API keys or tracker URLs with credentials.
+- Do not invent extra product features. Keep buttons working and shares totaling 100.
+- Campaign names get prefix `test_ukolov_` on create. Show it next to the name field.

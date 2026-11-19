@@ -1,0 +1,12 @@
+---
+description: Frontend visual language
+globs: frontend/**/*.{tsx,css}
+alwaysApply: false
+---
+
+# Design
+
+- White page background. Primary `#7C5CFF`, hover `#6B4AE6`, soft violet surfaces `#F8F6FF`.
+- UI in Russian. Show campaign name prefix `test_ukolov_` on the create form.
+- Dirty stream: pale yellow. Removed offers: gray, 0%, «Вернуть».
+- Buttons: Создать, Загрузить потоки, Добавить, Удалить, Вернуть, Закрепить, Опубликовать, Отмена.
